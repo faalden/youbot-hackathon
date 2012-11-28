@@ -1,0 +1,4 @@
+touch $1.cpp;
+echo "#include \"ros/ros.h\"\n#include \"std_msgs/String.h\"\n\n\
+int main(int argc, char *argv[])\n{\
+\n\tros::init(argc, argv, \"$1\");\n\treturn 0;\n}" > $1.cpp;
