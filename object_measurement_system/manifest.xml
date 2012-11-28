@@ -9,6 +9,7 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/object_measurement_system</url>
 
+  <depend package="roscpp"/>
 </package>
 
 
