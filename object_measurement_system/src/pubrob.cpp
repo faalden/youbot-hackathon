@@ -14,7 +14,7 @@ double getNextValue()
 
 char *dvalToString(const double val)
 {
-	double dummy = val;
+	double buf = val;
 	char str[7];
 	int status = 2, div = 10, strp = 0;
 
@@ -24,23 +24,28 @@ char *dvalToString(const double val)
 	{
 		if(status == 2)
 		{
-			str[strp] = '0' + (char)(((int)dummy) / div);
-			dummy -= (str[strp] - '0') * div;
+			str[strp] = '0' + (char)(((int)buf) / div);
+			ROS_INFO("%c", str[strp]);
+			buf -= (str[strp] - '0') * div;
 			div /= 10;
-			if(dummy < 1)
-				--status;
+			if(div < 1) --status;
 		}
 		else if(status == 0)
 		{
-			str[strp] = '0' + ((char)(dummy * 10));
+			if()
+			str[strp] = '0' + ((char)(buf *= 10));
+			ROS_INFO("%c", str[strp]);
+			div *= 10;
+			if(div == MM)
+				return str;
 		}
 		else
 		{
 			str[strp] = '.';
+			ROS_INFO("%c", str[strp]);
 			div = 10;
 			--status;
 		}
-		//ROS_INFO("--> %c\n", *(str++));
 		strp++;
 	}
 }
@@ -54,12 +59,14 @@ int main(int argc, char *argv[])
 
 	std_msgs::String msr_msg;
 	std::stringstream convs;
+	ROS_INFO("Check ros-loop");
 	while(ros::ok())
 	{
+		ROS_INFO("Check dvalToString");
 		convs << dvalToString(getNextValue()) << "m";
 		msr_msg.data = convs.str();
 		msr_pub.publish(msr_msg);
-		//ROS_INFO("Information sent.");
+		ROS_INFO("Information published: %s", msr_msg);
 		ls.sleep();
 	}
 	return 0;

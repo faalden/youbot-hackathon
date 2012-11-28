@@ -7,6 +7,8 @@ int main(int argc, char *argv[])
 	ros::init(argc, argv, "sublap");
 	ros::NodeHandle nh;
 	ros:::Subscriber msr_sub = ns.subscribe("sublap, 1000", printMsr);
-	ros::spin();
+	while(ros::ok())
+	{
+	}
 	return 0;
 }
