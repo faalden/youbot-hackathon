@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+
+	<!-- base components -->
+	<include file="$(find raw_bringup_sim)/robots/robot.launch" />
+
+
+</launch>
