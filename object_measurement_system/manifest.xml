@@ -8,7 +8,8 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/object_measurement_system</url>
-
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>  
 </package>
 
 
